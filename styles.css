@@ -1,3 +1,40 @@
+/*
 body {
-	background-color: yellow;
+	background-color: black;
+	font-size:25px;
+	text-align:center;
 }
+*/
+
+.page-container {
+	position:absolute;
+	height:100%;
+	width:100%;
+	background-color: green;
+	text-align: center;
+}
+
+.main-container {
+	position:relative;
+	height:90%;
+	width:90%;
+	left-margin:5%;
+	background-color: yellow;
+	text-align: center;
+
+}
+
+.squares {
+	position:relative;
+	height:25%;
+	width:25%;
+	margin:0px;
+	padding-top:50px;
+	border:2px solid black;
+	background-color:blue;
+	display:inline-block;
+	vertical-align:top; 
+	color:white;
+	font-size:72px;
+}
+
