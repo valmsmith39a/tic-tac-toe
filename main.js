@@ -22,7 +22,7 @@ function setUpGame() {
 
     $('.main-container').prepend($startPlayerButton);
 	$('#startPlayerButton').click(startPlayerButtonClicked);
-	$('.main-container').append($displayStartingPlayer)
+	
 
     // Set up squares 
 
@@ -38,6 +38,8 @@ function setUpGame() {
 function startPlayerButtonClicked() {
    // Generate either 1 or 0 
    var coinFlip = Math.round(Math.random()*1);
+
+   $('.main-container').prepend($displayStartingPlayer)
 
    if(coinFlip === 0) {
    	   toggleG = -1; 

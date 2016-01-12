@@ -1,3 +1,10 @@
+
+body {
+
+		background-image:url('http://image.stockcarracing.com/f/featurestories/9199916/scrp_0711_01_z%2Bnascar_grand_national_series%2Brace_cars.jpg');
+
+}
+
 .page-container {
 	position:absolute;
 	height:100%;
@@ -6,6 +13,7 @@
 	font-size:20px;
 	/*background-color: green;*/
 	text-align: center;
+	
 }
 
 .main-container {
@@ -27,7 +35,8 @@
 	top:0px;
 	margin-left:45%;
 	background-color:red;
-	color:white;
+	color:yellow;
+	opacity: .85;
 	font-size:20px;
 }
 
@@ -36,9 +45,10 @@
 	height:50px;
 	width:125px;
 	margin-left:45%;
-	background-color:blue;
+	background-color:red;
 	color:yellow;
 	font-size:20px;
+	opacity: .85;
 	/*background-color: purple;*/
 }
 
@@ -54,6 +64,7 @@
 	vertical-align:top; 
 	color:white;
 	font-size:72px;
+	opacity: .90;
 }
 
 h1 {
