@@ -2,7 +2,6 @@
 
 $(document).ready(init);
 
-// Global variables 
 var $startPlayerButton = $();
 var $displayStartingPlayer = $(); 
 var toggleG = 0;  // Player X: -1, Player O: 1
@@ -14,25 +13,22 @@ function init() {
 }
 
 function setUpGame() {
+	var $playerAdminBox = $('<div>').attr('id', 'playerAdminBox'); 
+  $('.main-container').append($playerAdminBox);
 
 	$startPlayerButton = $('<div>').attr('id','startPlayerButton').text('Who starts? Click!');
-    $displayStartingPlayer = $('<div>').attr('id', 'displayPlayerBox'); 
+  $displayStartingPlayer = $('<div>').attr('id', 'displayPlayerBox'); 
+  $('.main-container').prepend($startPlayerButton);
     
-    // Determine starting player 
-
-    $('.main-container').prepend($startPlayerButton);
+  // Determine starting player 
 	$('#startPlayerButton').click(startPlayerButtonClicked);
-	
-
     // Set up squares 
-
 	for(var i = 0; i < 9; i++) {
-    	var $squares = $('<div>').addClass('squares').data('player', 0);
-    	arrayOfSquaresG.push($squares);
-    }
-
-    $('.main-container').append(arrayOfSquaresG);
-    $('.squares').click(squareClicked);
+  	var $squares = $('<div>').addClass('squares').data('player', 0);
+  	arrayOfSquaresG.push($squares);
+  }
+  $('.main-container').append(arrayOfSquaresG);
+  $('.squares').click(squareClicked);
 }
 
 function startPlayerButtonClicked() {
@@ -42,29 +38,27 @@ function startPlayerButtonClicked() {
    $('.main-container').prepend($displayStartingPlayer)
 
    if(coinFlip === 0) {
-   	   toggleG = -1; 
-       $displayStartingPlayer.text('Player X starts!');
+    toggleG = -1; 
+    $displayStartingPlayer.text('Player X starts!');
    }
    else {
-   		toggleG = 1;
-   	   $displayStartingPlayer.text('Player O starts!');
+   	toggleG = 1;
+    $displayStartingPlayer.text('Player O starts!');
    }
-   $('.main-container').find('#startPlayerButton').hide();
 
+   $('.main-container').find('#startPlayerButton').hide();
    startedFlagG = true;  // Allow game to start 
 }
 
 function squareClicked() {
-
 	if(startedFlagG === true) {
-
-		var $this = $(this)
-
-		if(toggleG === -1){
-			$this.text('X');
-		 	$this.data('player', -1);
-		 	toggleG = 1; // Player O's turn 
-		 	$displayStartingPlayer.text('Player O\'s turn!');
+		var $this = $(this);
+		if($this.data('player') === 0) {
+			if(toggleG === -1) {
+				$this.text('X');
+			 	$this.data('player', -1);
+			 	toggleG = 1; // Player O's turn 
+			 	$displayStartingPlayer.text('Player O\'s turn!');
 	    }
 	    else {
 	    	$this.text('O');
@@ -72,13 +66,12 @@ function squareClicked() {
 	    	toggleG = -1;  // Player X's turn 
 	    	$displayStartingPlayer.text('Player X\'s turn!');
 	    }
-
 	    checkIfWin(); 
+		}
 	}
 }
 
-function checkIfWin(){
-
+function checkIfWin() {
 	var sq0 = arrayOfSquaresG[0].data('player');
 	var sq1 = arrayOfSquaresG[1].data('player');
 	var sq2 = arrayOfSquaresG[2].data('player');
@@ -88,15 +81,14 @@ function checkIfWin(){
 	var sq6 = arrayOfSquaresG[6].data('player');
 	var sq7 = arrayOfSquaresG[7].data('player');
 	var sq8 = arrayOfSquaresG[8].data('player');
-
-    var win1 = sq0 + sq1 + sq2; 
-    var win2 = sq3 + sq4 + sq5; 
-    var win3 = sq6 + sq7 + sq8; 
-    var win4 = sq0 + sq3 + sq6; 
-    var win5 = sq1 + sq4 + sq7; 
-    var win6 = sq2 + sq5 + sq8; 
-    var win7 = sq2 + sq4 + sq6; 
-    var win8 = sq0 + sq4 + sq8; 
+  var win1 = sq0 + sq1 + sq2; 
+  var win2 = sq3 + sq4 + sq5; 
+  var win3 = sq6 + sq7 + sq8; 
+  var win4 = sq0 + sq3 + sq6; 
+  var win5 = sq1 + sq4 + sq7; 
+  var win6 = sq2 + sq5 + sq8; 
+  var win7 = sq2 + sq4 + sq6; 
+  var win8 = sq0 + sq4 + sq8; 
 
 	if(win1 === 3 || win1 === -3) {
 		winEvent(win1 === 3  ? 1:-1);
@@ -130,27 +122,22 @@ function checkIfWin(){
 		winEvent(win8 === 3 ? 1:-1);
 		return; 
 	}
-    
-    var squaresFilledCounter = 0; 
-
-    for(var i = 0; i < 9; i++){
-
-    	if(arrayOfSquaresG[i].data('player') === 1 || arrayOfSquaresG[i].data('player') === -1) {
-        	squaresFilledCounter++;
-    	}
-    }
-
-    if(squaresFilledCounter === 9) {
-    	alert('Nobody won');
-    }
+  var squaresFilledCounter = 0; 
+  for(var i = 0; i < 9; i++) {
+  	if(arrayOfSquaresG[i].data('player') === 1 || arrayOfSquaresG[i].data('player') === -1) {
+      	squaresFilledCounter++;
+  	}
+  }
+  if(squaresFilledCounter === 9) {
+  	alert('Nobody won');
+  }
 }
 
 function winEvent(winner) {
-
-    if(winner === -1){
-    	alert('Player X wins!!!');
-    }
-    else {
-    	alert('Player O wins!!!');
-    }
+  if(winner === -1){
+  	alert('Player X wins!!!');
+  }
+  else {
+  	alert('Player O wins!!!');
+  }
 }
